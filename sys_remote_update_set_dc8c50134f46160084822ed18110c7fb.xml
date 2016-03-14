@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2016-03-14 04:10:45">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Author/source: https://github.com/nhylated/servicenow-copy-column-values-ui-context-menu
+License: https://github.com/nhylated/servicenow-copy-column-values-ui-context-menu/blob/master/LICENSE
+
+Adds a list header UI context menu for copying values of a column. The context menu opens an UI page in a dialog with the column's values in it.</description>
+<inserted/>
+<name>Copy Column Values UI Context Menu </name>
+<origin_sys_id/>
+<release_date/>
+<remote_sys_id>d117589f4f06160084822ed18110c7b1</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2016-03-14 04:10:45</sys_created_on>
+<sys_id>dc8c50134f46160084822ed18110c7fb</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2016-03-14 04:10:45</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_context_menu_be58505f4f06160084822ed18110c744</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_context_menu"&gt;&lt;sys_ui_context_menu action="INSERT_OR_UPDATE"&gt;&lt;action_script&gt;&lt;![CDATA[/**
+ * Script executed on the Client for this menu action
+ *
+ * The following variables are available to the script:
+ *    'g_list' the GlideList2 that the script is running against (only valid for List context menus)
+ *    'g_fieldName' the name of the field that the context menu is running against (only valid for List context menus)
+ *    'g_sysId' the sys_id of the row or form that the script is running against
+ *    'rowSysId' is also set to the sys_id of the row to support legacy actions, but g_sysId is preferred
+ */
+runContextAction();
+
+function runContextAction() {
+    var dialog = new GlideDialogWindow('copy_column_values');
+    dialog.setTitle('Copy values for column: ' + g_fieldLabel);
+    dialog.setPreference('list_query', g_list.getQuery({ orderby: true, fixed: true }));
+    dialog.setPreference('list_table', g_list.getTableName());
+    dialog.setPreference('field_to_copy', g_fieldName);
+    dialog.render();
+}
+]]&gt;&lt;/action_script&gt;&lt;active&gt;true&lt;/active&gt;&lt;comments/&gt;&lt;condition/&gt;&lt;do_not_cache&gt;false&lt;/do_not_cache&gt;&lt;dynamic_actions_script&gt;&lt;![CDATA[/** 
+ * This server-side script is used to dynamically create actions for the context menu, such as the list of available templates 
+ * 
+ * The following variables are available to the script: 
+ *    'g_tableName' the name of the current table 
+ *    'g_listId' the id of the list we are building the context menu for 
+ *    'g_itemName' the name of the UI Context Menu item we are building 
+ *    'g_itemOrder' the order defined in the UI Context Menu item we are building 
+ * 
+ * Add items to the context menu by calling: 
+ *    g_contextMenu.addAction(item_id, label, script_string, order); 
+ */ 
+]]&gt;&lt;/dynamic_actions_script&gt;&lt;menu&gt;list_header&lt;/menu&gt;&lt;name&gt;Copy Column Values&lt;/name&gt;&lt;on_show_script&gt;&lt;![CDATA[/**
+ * This client-side script is used to dynamically change the context menu before it is displayed.
+ * It is called before showing the context menu if the Run onShow script flag is checked.
+ *
+ * The following variables are available to the script:
+ *    'g_menu' the context menu that is about to be shown
+ *    'g_item' the current context menu item
+ *    'g_list' the GlideList2 that the script is running against (only valid for List context menus)
+ *    'g_fieldName' the name of the field that the context menu is running against (only valid for List context menus)
+ *    'g_fieldLabel' the label of the field that the context menu is running against (only valid for List context menus)
+ *    'g_sysId' the sys_id of the row or form that the script is running against
+ */
+ 
+]]&gt;&lt;/on_show_script&gt;&lt;order&gt;1500&lt;/order&gt;&lt;parent/&gt;&lt;run_on_show_script&gt;false&lt;/run_on_show_script&gt;&lt;sys_class_name&gt;sys_ui_context_menu&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-03-14 03:52:38&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;be58505f4f06160084822ed18110c744&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Copy Column Values&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_context_menu_be58505f4f06160084822ed18110c744&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-03-14 04:08:51&lt;/sys_updated_on&gt;&lt;table&gt;global&lt;/table&gt;&lt;track_selected&gt;false&lt;/track_selected&gt;&lt;type&gt;action&lt;/type&gt;&lt;/sys_ui_context_menu&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Copy Column Values UI Context Menu ">dc8c50134f46160084822ed18110c7fb</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2016-03-14 04:10:45</sys_created_on>
+<sys_id>108c50134f46160084822ed18110c7fc</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2016-03-14 04:10:45</sys_updated_on>
+<table>global</table>
+<target_name>Copy Column Values</target_name>
+<type>Context Menu</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_page_128814df4f06160084822ed18110c7de</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[jQuery('#copyColumnValuesTxtArea').select();]]&gt;&lt;/client_script&gt;&lt;description&gt;For 'Copy Column Values' context menu.&lt;/description&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+    
+    Please use Ctrl+C to copy the data and escape to dismiss this dialog.&lt;br/&gt;
+
+    &lt;j:set var="jvar_list_query" value="${RP.getWindowProperties().get('list_query')}" /&gt;
+    &lt;j:set var="jvar_list_table" value="${RP.getWindowProperties().get('list_table')}" /&gt;
+    &lt;j:set var="jvar_field_to_copy" value="${RP.getWindowProperties().get('field_to_copy')}" /&gt;
+    
+    &lt;g:evaluate jelly="true"&gt;
+      // Remember, any variables defined here are automatically added to the global scope
+      var fieldToCopy = jelly.jvar_field_to_copy;
+      var grListTable = new GlideRecord(jelly.jvar_list_table);
+      grListTable.addEncodedQuery(jelly.jvar_list_query);
+      grListTable.query();
+
+      var valuesStr = '';
+      while (grListTable.next()) {
+        var currValue = '';
+        if (grListTable[fieldToCopy].getDisplayValue != undefined) {
+          currValue = grListTable[fieldToCopy].getDisplayValue();
+        } else {
+          currValue = grListTable[fieldToCopy].toString();
+        }
+        valuesStr += currValue + '\n';
+      }
+    &lt;/g:evaluate&gt;
+
+    &lt;textarea id='copyColumnValuesTxtArea' style='height: 250px; width: 250px;'&gt;
+        ${valuesStr}
+    &lt;/textarea&gt;
+&lt;/j:jelly&gt;
+]]&gt;&lt;/html&gt;&lt;name&gt;copy_column_values&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-03-14 03:53:24&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;128814df4f06160084822ed18110c7de&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;copy_column_values&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_128814df4f06160084822ed18110c7de&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-03-14 03:53:37&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Copy Column Values UI Context Menu ">dc8c50134f46160084822ed18110c7fb</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2016-03-14 04:10:45</sys_created_on>
+<sys_id>508c50134f46160084822ed18110c7fc</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2016-03-14 04:10:45</sys_updated_on>
+<table/>
+<target_name>copy_column_values</target_name>
+<type>UI Page</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>

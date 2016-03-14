@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+    
+    Please use Ctrl+C to copy the data and escape to dismiss this dialog.<br/>
+
+    <j:set var="jvar_list_query" value="${RP.getWindowProperties().get('list_query')}" />
+    <j:set var="jvar_list_table" value="${RP.getWindowProperties().get('list_table')}" />
+    <j:set var="jvar_field_to_copy" value="${RP.getWindowProperties().get('field_to_copy')}" />
+    
+    <g:evaluate jelly="true">
+      // Remember, any variables defined here are automatically added to the global scope
+      var fieldToCopy = jelly.jvar_field_to_copy;
+      var grListTable = new GlideRecord(jelly.jvar_list_table);
+      grListTable.addEncodedQuery(jelly.jvar_list_query);
+      grListTable.query();
+
+      var valuesStr = '';
+      while (grListTable.next()) {
+        var currValue = '';
+        if (grListTable[fieldToCopy].getDisplayValue != undefined) {
+          currValue = grListTable[fieldToCopy].getDisplayValue();
+        } else {
+          currValue = grListTable[fieldToCopy].toString();
+        }
+        valuesStr += currValue + '\n';
+      }
+    </g:evaluate>
+
+    <textarea id='copyColumnValuesTxtArea' style='height: 250px; width: 250px;'>
+        ${valuesStr}
+    </textarea>
+</j:jelly>
