@@ -1,4 +1,9 @@
 /**
+ * Author/source: https://github.com/nhylated/servicenow-copy-column-values-ui-context-menu
+ * License: https://github.com/nhylated/servicenow-copy-column-values-ui-context-menu/blob/master/LICENSE
+ */
+
+/**
  * Script executed on the Client for this menu action
  *
  * The following variables are available to the script:
